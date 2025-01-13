@@ -25,6 +25,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::resource('news', NewsController::class)->only(['index', 'show']);
 
+Route::delete('/news/{news}', [NewsController::class, 'delete'])->name('news.delete');
+
 });
 
 require __DIR__.'/auth.php';

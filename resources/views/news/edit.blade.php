@@ -1,5 +1,7 @@
 ﻿@extends('layouts.app')
 
+@section('title', 'Nieuwsitem bewerken')
+
 @section('content')
 <div class="container">
     <h1>Nieuwsitem bewerken</h1>
@@ -17,9 +19,13 @@
         <div>
             <label for="image">Afbeelding (optioneel)</label>
             <input type="file" id="image" name="image">
+            @if($news->image)
+                <p>Huidige afbeelding:</p>
+                <img src="{{ asset('storage/' . $news->image) }}" alt="Huidige afbeelding" style="max-width: 200px;">
+            @endif
         </div>
         <div>
-            <label for="published_at">Publicatiedatum (optioneel)</label>
+            <label for="published_at">Publicatiedatum</label>
             <input type="date" id="published_at" name="published_at" value="{{ old('published_at', $news->published_at) }}">
         </div>
         <button type="submit">Opslaan</button>

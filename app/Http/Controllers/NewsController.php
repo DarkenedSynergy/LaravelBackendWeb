@@ -89,14 +89,19 @@ class NewsController extends Controller
     }
 
     // Verwijder een nieuwsitem
-    public function destroy(News $news)
+    public function delete(News $news)
     {
+        // Verwijder de afbeelding uit de opslag (indien aanwezig)
         if ($news->image) {
             \Storage::delete('public/' . $news->image);
         }
 
+        // Verwijder het nieuwsitem
         $news->delete();
+
+        // Redirect met succesmelding
         return redirect()->route('news.index')->with('success', 'Nieuwsitem verwijderd!');
     }
+
 }
 
