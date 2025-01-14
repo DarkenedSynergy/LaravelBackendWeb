@@ -7,7 +7,7 @@
     <h1>Nieuwsitems</h1>
 
     @foreach($news as $item)
-        <x-news-item :news="$item" />
+        <x-news-item :news="$item" :user="$item->user" />
     @endforeach
 
     {{-- Paginatie --}}

@@ -3,7 +3,20 @@
     <small>Gepubliceerd op: {{ $news->published_at ?? 'Onbekend' }}</small>
 
     {{-- Toon de auteur --}}
-    <small>Auteur: {{ $news->user->name ?? 'Onbekend' }}</small>
+    <div style="margin-top: 10px;">
+        <strong>Auteur:</strong>
+        @if ($news->user)
+            <strong>Auteur:</strong> {{ $news->user->name ?? 'Onbekend' }} <br>
+            @if ($news->user->profile_picture)
+                <img src="{{ asset('storage/' . $news->user->profile_picture) }}" alt="Profielfoto van {{ $news->user->name }}" style="max-width: 50px; height: auto; border-radius: 50%; margin-top: 5px;">
+            @else
+                <img src="{{ asset('storage/default-profile.png') }}" alt="Profielfoto" style="max-width: 50px; height: auto; border-radius: 50%; margin-top: 5px;">
+            @endif
+        @else
+            <span>Onbekend</span>
+        @endif
+
+    </div>
 
     @if($news->image)
         <img src="{{ asset('storage/' . $news->image) }}" alt="Afbeelding van {{ $news->title }}" style="max-width: 200px;">

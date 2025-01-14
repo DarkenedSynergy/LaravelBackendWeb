@@ -8,16 +8,17 @@ use App\Models\Tag;
 
 class NewsController extends Controller
 {
-    // Toon een lijst van nieuwsitems
+    // Toon een lijst van nieuwsitems met bijbehorende gebruiker
     public function index(Request $request)
     {
-        $query = News::query();
+        $query = News::with('user');
 
         if ($request->has('search')) {
             $query->where('title', 'like', '%' . $request->search . '%');
         }
 
         $news = $query->orderBy('published_at', 'desc')->paginate(5);
+
         return view('news.index', compact('news'));
     }
 
