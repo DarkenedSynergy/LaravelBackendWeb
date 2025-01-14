@@ -13,16 +13,18 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
+        <!-- Name Field -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+        <!-- Email Field -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
@@ -43,6 +45,33 @@
                             {{ __('A new verification link has been sent to your email address.') }}
                         </p>
                     @endif
+                </div>
+            @endif
+        </div>
+
+        <!-- Bio Field -->
+        <div>
+            <x-input-label for="bio" :value="__('Bio')" />
+            <textarea id="bio" name="bio" class="mt-1 block w-full" rows="4">{{ old('bio', $user->bio) }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('bio')" />
+        </div>
+
+        <!-- Birthday Field (Optional) -->
+        <div>
+            <x-input-label for="birthday" :value="__('Birthday (optional)')" />
+            <input type="date" id="birthday" name="birthday" value="{{ old('birthday', $user->birthday) }}" class="mt-1 block w-full" />
+            <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
+        </div>
+
+        <!-- Profile Picture Field -->
+        <div>
+            <x-input-label for="profile_picture" :value="__('Profile Picture (optional)')" />
+            <input type="file" id="profile_picture" name="profile_picture" class="mt-1 block w-full" />
+            <x-input-error class="mt-2" :messages="$errors->get('profile_picture')" />
+            @if ($user->profile_picture)
+                <div class="mt-2">
+                    <p>Huidige profielfoto:</p>
+                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profielfoto" style="max-width: 100px;">
                 </div>
             @endif
         </div>
