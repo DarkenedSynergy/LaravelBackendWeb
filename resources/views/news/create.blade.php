@@ -23,6 +23,17 @@
             <label for="published_at">Publicatiedatum (optioneel)</label>
             <input type="date" id="published_at" name="published_at" value="{{ old('published_at') }}">
         </div>
+        <div>
+            <label for="tags">Tags</label>
+            <select id="tags" name="tags[]" multiple>
+                @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'selected' : '' }}>
+                        {{ $tag->name }}
+                    </option>
+                @endforeach
+            </select>
+            <small>Selecteer een of meerdere tags</small>
+        </div>
         <button type="submit">Opslaan</button>
     </form>
 </div>

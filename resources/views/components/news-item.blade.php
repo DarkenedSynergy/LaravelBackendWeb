@@ -2,12 +2,29 @@
     <h2><a href="{{ route('news.show', $news) }}">{{ $news->title }}</a></h2>
     <small>Gepubliceerd op: {{ $news->published_at ?? 'Onbekend' }}</small>
 
+    {{-- Toon de auteur --}}
+    <small>Auteur: {{ $news->user->name ?? 'Onbekend' }}</small>
+
     @if($news->image)
         <img src="{{ asset('storage/' . $news->image) }}" alt="Afbeelding van {{ $news->title }}" style="max-width: 200px;">
     @endif
 
     <p>{{ \Illuminate\Support\Str::limit($news->content, 100) }}</p>
 
+    {{-- Tags weergeven --}}
+    <div style="margin-top: 0.5rem;">
+        <small><strong>Tags:</strong>
+            @forelse($news->tags as $tag)
+                <span style="background-color: #f0f0f0; padding: 0.2rem 0.4rem; margin-right: 0.3rem; border-radius: 5px;">
+                    {{ $tag->name }}
+                </span>
+            @empty
+                Geen tags gekoppeld
+            @endforelse
+        </small>
+    </div>
+
+    {{-- Admin-opties --}}
     @if(auth()->check() && auth()->user()->is_admin)
         <div style="margin-top: 1rem;">
             <a href="{{ route('news.edit', $news) }}" class="btn btn-primary">Bewerken</a>

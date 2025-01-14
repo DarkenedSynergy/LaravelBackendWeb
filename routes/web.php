@@ -3,6 +3,7 @@
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +28,10 @@ Route::resource('news', NewsController::class)->only(['index', 'show']);
 
 Route::delete('/news/{news}', [NewsController::class, 'delete'])->name('news.delete');
 
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('tags', TagController::class)->except(['show']);
 });
 
 require __DIR__.'/auth.php';

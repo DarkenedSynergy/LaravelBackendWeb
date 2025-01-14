@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Models\Tag;
 
 class NewsController extends Controller
 {
@@ -23,7 +24,8 @@ class NewsController extends Controller
     // Toon een formulier om een nieuwsitem toe te voegen
     public function create()
     {
-        return view('news.create');
+        $tags = Tag::all();
+        return view('news.create', compact('tags'));
     }
 
     // Sla een nieuw nieuwsitem op
@@ -34,6 +36,8 @@ class NewsController extends Controller
             'content' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'published_at' => 'nullable|date',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:tags,id',
         ]);
 
         $imagePath = null;
@@ -41,12 +45,15 @@ class NewsController extends Controller
             $imagePath = $request->file('image')->store('news_images', 'public');
         }
 
-        News::create([
+        $news = News::create([
             'title' => $request->title,
             'content' => $request->content,
             'image' => $imagePath,
             'published_at' => $request->published_at,
+            'user_id' => auth()->id(),
         ]);
+
+        $news->tags()->sync($request->tags);
 
         return redirect()->route('news.index')->with('success', 'Nieuwsitem toegevoegd!');
     }
@@ -60,7 +67,8 @@ class NewsController extends Controller
     // Toon een formulier om een nieuwsitem te bewerken
     public function edit(News $news)
     {
-        return view('news.edit', compact('news'));
+        $tags = Tag::all();
+        return view('news.edit', compact('news', 'tags'));
     }
 
     // Werk een bestaand nieuwsitem bij
@@ -71,6 +79,8 @@ class NewsController extends Controller
             'content' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'published_at' => 'nullable|date',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:tags,id',
         ]);
 
         $imagePath = $news->image;
@@ -84,6 +94,8 @@ class NewsController extends Controller
             'image' => $imagePath,
             'published_at' => $request->published_at,
         ]);
+
+        $news->tags()->sync($request->tags); // Werk de gekoppelde tags bij
 
         return redirect()->route('news.index')->with('success', 'Nieuwsitem bijgewerkt!');
     }
@@ -105,6 +117,4 @@ class NewsController extends Controller
         // Redirect met succesmelding
         return redirect()->route('news.index')->with('success', 'Nieuwsitem verwijderd!');
     }
-
 }
-
