@@ -93,7 +93,10 @@ class NewsController extends Controller
     {
         // Verwijder de afbeelding uit de opslag (indien aanwezig)
         if ($news->image) {
-            \Storage::delete('public/' . $news->image);
+            $filePath = public_path('storage/' . $news->image);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
         }
 
         // Verwijder het nieuwsitem
