@@ -7,34 +7,31 @@
     <h1>Nieuws toevoegen</h1>
     <form method="POST" action="{{ route('news.store') }}" enctype="multipart/form-data">
         @csrf
-        <div>
+        <div class="form-group">
             <label for="title">Titel</label>
-            <input type="text" id="title" name="title" value="{{ old('title') }}" required>
+            <input type="text" id="title" name="title" class="form-control" required>
         </div>
-        <div>
+        <div class="form-group">
             <label for="content">Inhoud</label>
-            <textarea id="content" name="content" rows="5" required>{{ old('content') }}</textarea>
+            <textarea id="content" name="content" class="form-control" rows="5" required></textarea>
         </div>
-        <div>
+        <div class="form-group">
             <label for="image">Afbeelding (optioneel)</label>
-            <input type="file" id="image" name="image">
+            <input type="file" id="image" name="image" class="form-control">
         </div>
-        <div>
+        <div class="form-group">
             <label for="published_at">Publicatiedatum (optioneel)</label>
-            <input type="date" id="published_at" name="published_at" value="{{ old('published_at') }}">
+            <input type="date" id="published_at" name="published_at" class="form-control">
         </div>
-        <div>
+        <div class="form-group">
             <label for="tags">Tags</label>
-            <select id="tags" name="tags[]" multiple>
+            <select id="tags" name="tags[]" multiple class="form-control">
                 @foreach($tags as $tag)
-                    <option value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'selected' : '' }}>
-                        {{ $tag->name }}
-                    </option>
+                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                 @endforeach
             </select>
-            <small>Selecteer een of meerdere tags</small>
         </div>
-        <button type="submit">Opslaan</button>
+        <button type="submit" class="btn btn-primary">Opslaan</button>
     </form>
 </div>
 @endsection
