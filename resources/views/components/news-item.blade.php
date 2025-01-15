@@ -10,7 +10,7 @@
             @if ($news->user->profile_picture)
                 <img src="{{ asset('storage/' . $news->user->profile_picture) }}" alt="Profielfoto van {{ $news->user->name }}" style="max-width: 50px; height: auto; border-radius: 50%; margin-top: 5px;">
             @else
-                <img src="{{ asset('storage/default-profile.png') }}" alt="Profielfoto" style="max-width: 50px; height: auto; border-radius: 50%; margin-top: 5px;">
+                <img src="{{ asset('storage/defaultpfp.png') }}" alt="Profielfoto" style="max-width: 50px; height: auto; border-radius: 50%; margin-top: 5px;">
             @endif
         @else
             <span>Onbekend</span>

@@ -1,16 +1,17 @@
-﻿@extends('layouts.Admin')
+﻿@extends('layouts.admin')
 
 @section('title', 'Admin Dashboard')
 
 @section('content')
-<div class="container">
-    <h1>Admin Dashboard</h1>
-    <p>Welkom, {{ auth()->user()->name }}!</p>
+    <div class="container">
+        <h1>Welkom op het Admin Dashboard</h1>
+        <p>Gebruik de onderstaande links om je administratie te beheren.</p>
 
-    <div class="mt-4">
-        <a href="{{ route('users.index') }}" class="btn btn-primary">Beheer Gebruikers</a>
-        <a href="{{ route('news.index') }}" class="btn btn-secondary">Beheer Nieuws</a>
-        <a href="{{ route('tags.index') }}" class="btn btn-info">Beheer Tags</a>
+        <ul>
+            <li><a href="{{ route('faq.index') }}">Bekijk FAQ's</a></li>
+            <li><a href="{{ route('faq.create') }}">Voeg een nieuwe FAQ toe</a></li>
+            <li><a href="{{ route('tags.index') }}">Beheer Tags</a></li>
+            <li><a href="{{ route('users.index') }}">Beheer Gebruikers</a></li>
+        </ul>
     </div>
-</div>
 @endsection
