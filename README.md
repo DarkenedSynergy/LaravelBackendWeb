@@ -27,8 +27,7 @@ Volg deze stappen om je ontwikkelomgeving in te stellen:
 
 1. Clone de repository:
    ```bash
-   git clone https://github.com/your-username/paardensite-backend-web.git
-   cd paardensite-backend-web
+   https://github.com/DarkenedSynergy/LaravelBackendWeb.git
    ```
 2. Installeer de afhankelijkheden via Composer:
    ```bash
