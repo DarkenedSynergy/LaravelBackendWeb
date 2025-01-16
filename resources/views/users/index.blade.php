@@ -19,7 +19,7 @@
                     @foreach ($users as $user)
                         <tr>
                             <td class="py-2 px-4 border-b">
-                                <a href="{{ route('user.show', $user) }}" class="text-blue-500 hover:underline">
+                                <a href="{{ route('users.show', $user) }}" class="text-blue-500 hover:underline">
                                     {{ $user->name }}
                                 </a>
                             </td>
@@ -34,3 +34,4 @@
         @endif
     </div>
 @endsection
+

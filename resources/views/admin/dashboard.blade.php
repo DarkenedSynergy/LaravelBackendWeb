@@ -32,10 +32,7 @@
                 <p class="text-sm">Bekijk en beheer alle gebruikers van de website.</p>
             </div>
 
-            <!-- Admin Dashboard Settings -->
-            <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300">
-                <a href="{{ route('admin.dashboard') }}" class="block text-xl font-bold mb-2">Instellingen</a>
-                <p class="text-sm">Pas de instellingen van het dashboard aan.</p>
+
             </div>
         </div>
     </div>

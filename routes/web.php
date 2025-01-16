@@ -57,7 +57,7 @@ Route::middleware('admin')->group(function () {
          Route::put('/admin/faq/{faq}', [FaqController::class, 'update'])->name('admin.faq.update');
          Route::delete('/admin/faq/{faq}', [FaqController::class, 'destroy'])->name('admin.faq.delete');
     // Admin News management (create, edit, update, delete)
-  //  Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news.index');
+       Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news.index');
        Route::get('/admin/news/create', [NewsController::class, 'create'])->name('admin.news.create'); // Create news (admin only)
        Route::post('/admin/news', [NewsController::class, 'store'])->name('admin.news.store'); // Store news (admin only)
        Route::get('/admin/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit'); // Edit news (admin only)
