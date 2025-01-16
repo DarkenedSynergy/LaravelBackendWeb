@@ -23,8 +23,8 @@ class User extends Authenticatable
         'password',
         'bio',
         'profile_picture',
+        'is_admin', // Voeg is_admin hier toe
     ];
-
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,11 +46,12 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean', // Zorg dat is_admin automatisch als boolean wordt verwerkt
         ];
     }
+
     public function news()
     {
-       return $this->hasMany(News::class);
+        return $this->hasMany(News::class);
     }
-
 }

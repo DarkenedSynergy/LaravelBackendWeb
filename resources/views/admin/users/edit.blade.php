@@ -20,12 +20,19 @@
         </div>
 
         <div class="form-group">
-            <label for="is_admin">Admin</label>
-            <select name="is_admin" class="form-control">
-                <option value="1" {{ $user->is_admin ? 'selected' : '' }}>Ja</option>
-                <option value="0" {{ !$user->is_admin ? 'selected' : '' }}>Nee</option>
-            </select>
+            <label for="is_admin">Is Admin</label><br>
+
+            <!-- Radio Button voor Geen Admin -->
+            <input type="radio" id="is_admin_false" name="is_admin" value="false" {{ $user->is_admin ? '' : 'checked' }}>
+            <label for="is_admin_false">Nee</label>
+
+            <!-- Radio Button voor Admin -->
+            <input type="radio" id="is_admin_true" name="is_admin" value="true" {{ $user->is_admin ? 'checked' : '' }}>
+            <label for="is_admin_true">Ja</label>
         </div>
+
+
+
 
         <button type="submit" class="btn btn-primary">Opslaan</button>
     </form>
