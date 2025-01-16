@@ -3,19 +3,25 @@
 @section('title', 'Veelgestelde Vragen')
 
 @section('content')
-    <div class="container">
+    <div class="faq-container">
         <h1>Veelgestelde Vragen</h1>
 
         @foreach($categories as $category)
-            <h2>{{ $category->name }}</h2>
-            <ul>
+            <div class="faq-category">
+                <h2>{{ $category->name }}</h2>
+
                 @foreach($category->faqs as $faq)
-                    <li>
-                        <strong>Vraag:</strong> {{ $faq->question }} <br>
-                        <strong>Antwoord:</strong> {{ $faq->answer }}
-                    </li>
+                    <div class="faq-item">
+                        <div class="question">
+                            {{ $faq->question }}
+                        </div>
+                        <div class="answer">
+                            {{ $faq->answer }}
+                        </div>
+
+                    </div>
                 @endforeach
-            </ul>
+            </div>
         @endforeach
     </div>
 @endsection

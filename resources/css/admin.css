@@ -1,0 +1,121 @@
+﻿/* admin.css */
+
+/* Algemeen stijlen voor het admin dashboard */
+body {
+    background-color: #2f3b4e; /* Donkerblauwe achtergrond */
+    color: #e0e0e0; /* Lichte tekstkleur voor contrast */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header stijlen */
+header {
+    background-color: #1c2733; /* Donkerblauw/grijs voor de header */
+    padding: 1rem;
+    color: #ffffff;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-start;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    color: #ffcc00; /* Hover kleur voor de links */
+}
+
+/* Admin Dashboard container */
+.container {
+    background-color: #3d4f67; /* Lichte blauw-grijze achtergrond voor de container */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.container h1 {
+    color: #ffcc00; /* Gouden kleur voor de titel */
+}
+
+/* Sidebar (indien aanwezig) */
+.sidebar {
+    background-color: #1f2833; /* Donkerder blauw voor de sidebar */
+    color: #e0e0e0;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.sidebar a:hover {
+    color: #ffcc00;
+    background-color: #3d4f67;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #1c2733;
+    color: #ffffff;
+}
+
+/* Styling voor de navigatie links in de header */
+.nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #3d4f67; /* Lichte grijs-blauw bij hover */
+    color: #ffcc00; /* Gouden tekstkleur bij hover */
+}
+
+/* Styling voor knoppen en admin links */
+.admin-link {
+    background-color: #ff7f50; /* Oranjerode achtergrond voor admin link */
+    color: white;
+    padding: 12px 25px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-link:hover {
+    background-color: #e56b3d; /* Donkerder oranje bij hover */
+}
+
+/* Styling voor uitlogknop */
+.btn-logout {
+    background-color: #ff6666; /* Roodachtige achtergrond voor uitloggen */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #e55a4e; /* Donkerder rood bij hover */
+}

@@ -35,8 +35,10 @@ Route::middleware('admin')->group(function () {
     Route::delete('/admin/faq/{faq}', [FaqController::class, 'destroy'])->name('faq.delete');
 });
 
-// Public user profile route
-Route::get('/user/{user}', [ProfileController::class, 'showPublic'])->name('user.show');
+
+// Public Routes for Users
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
 
 // Profile management routes (for authenticated users)
 Route::middleware('auth')->group(function () {
@@ -63,15 +65,15 @@ Route::middleware('admin')->group(function () {
     // Tag Management
     Route::resource('tags', TagController::class)->except(['show']);
 
-    // User Management (excluding 'create' and 'store' routes)
-    Route::get('/admin/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/admin/users', [UserController::class, 'store'])->name('users.store');
-    Route::resource('users', UserController::class)->except(['create', 'store']);
-    // Show form to create a new user
-    Route::get('/admin/users/create', [UserController::class, 'create'])->name('users.create');
-
-    // Store the new user after form submission
-    Route::post('/admin/users', [UserController::class, 'store'])->name('users.store');
+    // Admin Routes for User Management
+    Route::middleware('admin')->group(function () {
+        Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+        Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create'); // Admin-specific route for creating users
+        Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
+        Route::get('/admin/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+        Route::put('/admin/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+        Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    });
 
 });
 

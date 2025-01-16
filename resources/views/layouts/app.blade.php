@@ -1,10 +1,13 @@
+@vite('resources/css/app.css')
+@vite('resources/js/app.js')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Profiel')</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 
     <!-- Voeg jQuery en jQuery Validation toe bovenaan je pagina -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -12,25 +15,34 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="{{ route('news.index') }}">Nieuws</a></li>
-                <li><a href="{{ route('profile.edit') }}">Profiel</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit">Uitloggen</button>
-                    </form>
-                </li>
-            </ul>
-        </nav>
-    </header>
+            <nav class="flex justify-between items-center p-4" style="background-color: #D2B48C; color: #333;">
+                <ul class="flex gap-4">
+                    <li><a href="{{ route('news.index') }}">Nieuws</a></li>
+                    <li><a href="{{ route('profile.edit') }}">Profiel</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/users">Gebruikers</a></li>
+
+                    {{-- Alleen zichtbaar voor ingelogde admins --}}
+                    @auth
+                        @if(auth()->user()->is_admin)
+                            <li><a href="{{ route('admin.dashboard') }}" class="text-blue-600">Admin Dashboard</a></li>
+                        @endif
+                    @endauth
+                </ul>
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="bg-white text-pink-600 px-4 py-2 rounded">Uitloggen</button>
+                </form>
+            </nav>
+
+        </header>
     <main>
         @yield('content')
     </main>
     <footer>
-        <p>© 2025 Paardensite. Alle rechten voorbehouden.</p>
+        <p>© 2025 Aidan De Greef. Alle rechten voorbehouden.</p>
     </footer>
 
     <!-- Voeg het validatie-script hieronder toe, vlak voor het sluiten van de body-tag -->

@@ -1,38 +1,36 @@
-﻿@extends('layouts.admin')
+﻿@extends('layouts.app')
 
-@section('title', 'Gebruikersbeheer')
+@section('title', 'Alle Gebruikers')
 
 @section('content')
-<div class="container">
-    <h1>Gebruikerslijst</h1>
+    <div class="container">
+        <h1 class="text-3xl font-bold mb-4">Alle Gebruikers</h1>
 
-    {{-- Knop om een nieuwe gebruiker toe te voegen --}}
-    <a href="{{ route('users.create') }}" class="btn btn-success mb-3">Nieuwe gebruiker toevoegen</a>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Naam</th>
-                <th>Email</th>
-                <th>Acties</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($users as $user)
-            <tr>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>
-                    <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">Bewerken</a>
-                    <form action="{{ route('users.destroy', $user) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?')">Verwijderen</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+        @if($users->count() > 0)
+            <table class="min-w-full table-auto border-collapse border border-gray-200">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b">Naam</th>
+                        <th class="py-2 px-4 border-b">E-mail</th>
+                        <th class="py-2 px-4 border-b">Admin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td class="py-2 px-4 border-b">
+                                <a href="{{ route('user.show', $user) }}" class="text-blue-500 hover:underline">
+                                    {{ $user->name }}
+                                </a>
+                            </td>
+                            <td class="py-2 px-4 border-b">{{ $user->email }}</td>
+                            <td class="py-2 px-4 border-b">{{ $user->is_admin ? 'Ja' : 'Nee' }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @else
+            <p class="mt-4">Er zijn momenteel geen gebruikers.</p>
+        @endif
+    </div>
 @endsection

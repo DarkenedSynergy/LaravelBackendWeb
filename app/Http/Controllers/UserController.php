@@ -4,27 +4,41 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    // Toon de lijst van gebruikers
+    // Show all users (admin only)
     public function index()
     {
-        // Haal alle gebruikers op
-        $users = User::all();
+        // Check if the user is an admin
+        if (Auth::check() && Auth::user()->is_admin) {
+            $users = User::all(); // Show all users for admins
+            return view('admin.users.index', compact('users')); // Use admin view for admin users
+        }
+
+        // Show the users for normal users (no admin access)
+        $users = User::all(); // or any other filtering you want for regular users
         return view('users.index', compact('users'));
     }
 
-    // Toon een formulier om een gebruiker toe te voegen
-    public function create()
+    // Show a specific user's details
+    public function show(User $user)
     {
-        return view('users.create');
+        return view('users.show', compact('user'));
     }
 
-    // Sla een nieuwe gebruiker op
+    // Create a new user (admin only)
+    public function create()
+    {
+        // Admin-only logic can be handled by middleware
+        return view('admin.users.create');
+    }
+
+    // Store the new user in the database (admin only)
     public function store(Request $request)
     {
-        // Validatie voor nieuwe gebruiker
+        // Validate new user data
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -32,59 +46,50 @@ class UserController extends Controller
             'is_admin' => 'required|boolean',
         ]);
 
-        // Maak een nieuwe gebruiker aan
+        // Create new user
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),  // Encrypt het wachtwoord
-            'is_admin' => $request->is_admin ?? 0,  // Voeg admin-rechten toe (standaard is 0)
+            'password' => bcrypt($request->password),
+            'is_admin' => $request->is_admin,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'Gebruiker toegevoegd!');
+        return redirect()->route('admin.users.index')->with('success', 'User added!');
     }
 
-    // Toon een formulier om een gebruiker te bewerken
+    // Edit an existing user (admin only)
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
-    // Werk een gebruiker bij
+    // Update an existing user (admin only)
     public function update(Request $request, User $user)
     {
-        // Validatie voor het bewerken van een gebruiker
+        // Validate user data
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed',  // Only require password if it's being updated
-            'is_admin' => 'nullable|boolean',  // Validate is_admin as a boolean
+            'password' => 'nullable|string|min:8|confirmed',
+            'is_admin' => 'nullable|boolean',
         ]);
 
-        // Start updating the user data
-        $user->name = $request->name;
-        $user->email = $request->email;
+        // Update the user data
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password ? bcrypt($request->password) : $user->password,
+            'is_admin' => $request->is_admin ?? $user->is_admin,
+        ]);
 
-        // If a new password is provided, update it
-        if ($request->filled('password')) {
-            $user->password = bcrypt($request->password); // Encrypt the new password
-        }
-
-        // Update 'is_admin' field properly
-        $user->is_admin = $request->is_admin ?? $user->is_admin; // Only change if 'is_admin' is present
-
-        // Save the updated user
-        $user->save();
-
-        return redirect()->route('users.index')->with('success', 'Gebruiker bijgewerkt!');
+        return redirect()->route('admin.users.index')->with('success', 'User updated!');
     }
 
-
-    // Verwijder een gebruiker
+    // Delete a user (admin only)
     public function destroy(User $user)
     {
-
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'Gebruiker verwijderd!');
+        return redirect()->route('admin.users.index')->with('success', 'User deleted!');
     }
 }

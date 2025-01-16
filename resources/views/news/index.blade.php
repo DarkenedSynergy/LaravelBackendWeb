@@ -5,17 +5,21 @@
 @section('content')
     <div class="container">
         <h1>Nieuws</h1>
-        <ul>
+
+        <div class="news-list">
             @foreach ($news as $newsItem)
-                <li>
+                <div class="news-item">
                     <a href="{{ route('news.show', $newsItem) }}">
                         <h3>{{ $newsItem->title }}</h3>
                     </a>
+
                     @if($newsItem->image)
-                        <img src="{{ asset('storage/' . $newsItem->image) }}" alt="{{ $newsItem->title }}" style="max-width: 100%; height: auto;">
+                        <img src="{{ asset('storage/' . $newsItem->image) }}" alt="{{ $newsItem->title }}" class="news-image">
                     @endif
-                </li>
+
+                    <p>{{ \Illuminate\Support\Str::limit($newsItem->content, 100) }}</p>
+                </div>
             @endforeach
-        </ul>
+        </div>
     </div>
 @endsection
