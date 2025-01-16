@@ -13,9 +13,8 @@ Route::get('/', function () {
 });
 
 // News Routes
-Route::get('/news', [NewsController::class, 'index'])->name('news.index'); // News index
-Route::get('/news/create', [NewsController::class, 'create'])->name('news.create'); // Create news
-Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show'); // Show specific news
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
 
 // Dashboard Route (for authenticated users)
 Route::get('/dashboard', function () {
@@ -27,7 +26,7 @@ Route::get('/faq', [FaqController::class, 'index'])->name('faq.index'); // Publi
 
 // Public Routes for Users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::get('/user/{user}', [UserController::class, 'show'])->name('users.show');
 
 // Profile management routes (for authenticated users)
 Route::middleware('auth')->group(function () {
@@ -48,17 +47,18 @@ Route::middleware('admin')->group(function () {
      // admin faq management
      Route::get('/admin/faq', [FaqController::class, 'adminIndex'])->name('admin.faq.index');
          Route::get('/admin/faq/create', [FaqController::class, 'create'])->name('admin.faq.create');
-         Route::post('/admin/faq', [FaqController::class, 'store'])->name('admin.faq.store');
+         Route::post('/news', [NewsController::class, 'store'])->name('news.store');
          Route::get('/admin/faq/{faq}/edit', [FaqController::class, 'edit'])->name('admin.faq.edit');
          Route::put('/admin/faq/{faq}', [FaqController::class, 'update'])->name('admin.faq.update');
          Route::delete('/admin/faq/{faq}', [FaqController::class, 'destroy'])->name('admin.faq.delete');
     // Admin News management (create, edit, update, delete)
-    Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news.index');
-    Route::get('/admin/news/create', [NewsController::class, 'create'])->name('admin.news.create');
-    Route::post('/admin/news', [NewsController::class, 'store'])->name('admin.news.store');
-    Route::get('/admin/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
-    Route::put('/admin/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
-    Route::delete('/admin/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.delete');
+  //  Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news.index');
+       Route::get('/admin/news/create', [NewsController::class, 'create'])->name('admin.news.create'); // Create news (admin only)
+       Route::post('/admin/news', [NewsController::class, 'store'])->name('admin.news.store'); // Store news (admin only)
+       Route::get('/admin/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit'); // Edit news (admin only)
+       Route::put('/admin/news/{news}', [NewsController::class, 'update'])->name('admin.news.update'); // Update news (admin only)
+       Route::delete('/admin/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.delete'); // Delete news (admin only)
+
 
     // Tag Management
     Route::resource('tags', TagController::class)->except(['show']);
@@ -73,6 +73,5 @@ Route::middleware('admin')->group(function () {
 });
 
 
-});
 
 require __DIR__.'/auth.php';

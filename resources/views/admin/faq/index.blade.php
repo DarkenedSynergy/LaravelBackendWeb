@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <button href="{{ route('admin.faq.create') }}" class="btn btn-primary mb-3">Nieuwe FAQ toevoegen</button>
+        <a href="{{ route('admin.faq.create') }}" class="btn btn-primary mb-3">Nieuwe FAQ toevoegen</a>
 
         <table class="table">
             <thead>
@@ -31,7 +31,7 @@
                         <td>{{ $faq->category->name }}</td>
 
                         <td>
-                            <button href="{{ route('admin.faq.edit', $faq) }}" class="btn btn-warning">Bewerken</button>
+                            <a href="{{ route('admin.faq.edit', $faq) }}" class="btn btn-warning">Bewerken</a>
                             <form action="{{ route('admin.faq.delete', $faq) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')

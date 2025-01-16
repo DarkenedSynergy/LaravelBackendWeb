@@ -212,3 +212,6 @@ a.btn-add-user:active, a.btn-edit-user:active {
     background-color: inherit; /* Zorg ervoor dat de achtergrondkleur niet verandert bij focus of actieve status */
     box-shadow: none; /* Verwijder eventuele box-shadow die door browsers wordt toegevoegd */
 }
+a{
+    color: orange;
+}

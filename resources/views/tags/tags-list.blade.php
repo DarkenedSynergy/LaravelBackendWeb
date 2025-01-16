@@ -10,7 +10,7 @@
         <div>{{ session('success') }}</div>
     @endif
 
-    <button href="{{ route('tags.create') }}" class="btn btn-primary">Nieuwe tag toevoegen</button>
+    <a href="{{ route('tags.create') }}" class="btn btn-primary">Nieuwe tag toevoegen</a>
 
     <table class="table">
         <thead>
@@ -24,7 +24,7 @@
                 <tr>
                     <td>{{ $tag->name }}</td>
                     <td>
-                        <button href="{{ route('tags.edit', $tag) }}" class="btn btn-warning">Bewerken</button>
+                        <a href="{{ route('tags.edit', $tag) }}" class="btn btn-warning">Bewerken</a>
                         <form action="{{ route('tags.destroy', $tag) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')

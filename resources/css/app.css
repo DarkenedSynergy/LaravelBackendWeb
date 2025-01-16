@@ -2,17 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4e8d7; /* Beige background for the whole page */
+    background-color: #f4e8d7; /* Beige background */
     color: #8b5e3c; /* Light brown text color */
     display: flex;
     flex-direction: column;
@@ -22,41 +22,82 @@ header nav ul {
     list-style: none;
     display: flex;
     gap: 1rem;
-    background: #8b5e3c; /* Light brown background for the header */
+    background: #8b5e3c; /* Light brown background for header */
     padding: 1rem;
 }
 
-header nav ul li a,
-header nav ul li button {
-    color: #fff; /* White text for links and buttons */
+header nav ul li a {
+    color: #fff; /* White text for links */
     text-decoration: none;
-}
-ul li a {
-    text-align: center;
-    text-decoration: none; /* Verwijder onderstreping */
-    font-size: 1rem;
     padding: 10px;
     border-radius: 5px;
-    display: block; /* Zorgt ervoor dat de link als een block-element wordt behandeld */
-    transition: background-color 0.3s ease; /* Voeg een overgang toe voor de achtergrondkleur */
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    background-color: #704c31; /* Darker brown on hover */
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 35;
+}
+h3 {
+    font-weight: bold;
 }
 
 main {
+    display: flex;
+    justify-content: center; /* Horizontaal centreren */
+    align-items: center; /* Verticaal centreren */
+
     padding: 1rem;
-    flex-grow: 1;
 }
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+
+.container {
+    max-width: 1200px; /* Maximaliseer de breedte van de container */
+    width: 100%; /* Zorg ervoor dat de container zich uitstrekt over de breedte */
+    padding: 2rem; /* Voeg padding toe rondom de container */
 }
+
 
 footer {
     text-align: center;
     padding: 1rem;
-    background: #8b5e3c; /* Light brown background for the footer */
-    color: #fff; /* White text in the footer */
+    background: #8b5e3c; /* Light brown background for footer */
+    color: #fff;
     width: 100%;
+}
+
+.news-list {
+    display: flex;
+    flex-wrap: wrap; /* Zorgt ervoor dat de items naar de volgende regel springen als er geen ruimte meer is */
+    gap: 1rem; /* Maakt ruimte tussen de items */
+}
+
+.news-item {
+    background-color: #f9f1e7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 1rem;
+    flex: 1 1 calc(33.33% - 1rem); /* Elk item neemt 33.33% van de breedte, minus de tussenruimte */
+    box-sizing: border-box; /* Zorgt ervoor dat de padding en margin in de breedte worden meegerekend */
+}
+
+/* Als je wilt dat de items op kleinere schermen onder elkaar komen te staan, kun je de volgende media query toevoegen */
+@media (max-width: 768px) {
+    .news-item {
+        flex: 1 1 calc(50% - 1rem); /* 2 items per rij op middelgrote schermen */
+    }
+}
+
+@media (max-width: 480px) {
+    .news-item {
+        flex: 1 1 100%; /* 1 item per rij op kleine schermen */
+    }
 }
 
 /* Styling for news items */
@@ -66,11 +107,15 @@ footer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 1rem;
+    text-align: center;
+    max-width: 500px;
+
 }
 
 .news-item img {
     max-width: 100%;
     border-radius: 5px;
+
 }
 
 .news-item .news-author {
@@ -83,177 +128,67 @@ footer {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 2px solid #8b5e3c; /* Light brown border around the profile picture */
+    border: 2px solid #8b5e3c; /* Light brown border around profile picture */
 }
 
 .news-item h2,
 .news-item p {
-    color: #8b5e3c; /* Light brown text color for titles and paragraphs in news items */
+    color: #8b5e3c; /* Light brown text color for titles and paragraphs */
+    text-align: center;
 }
 
-
-button:hover,
-a:hover {
-    background-color: #704c31; /* Darker brown on hover */
-}
-
-/* Container for news items */
-.news-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-/* Styling for individual news items */
-.news-item {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 1rem;
-}
-
-/* Image of news items */
-.news-image {
-    max-width: 100%;
-    border-radius: 5px;
-}
-
-/* Title of news item */
-.news-item h3 {
-    color: #8b5e3c; /* Light brown color for titles */
-    font-size: 1.25rem;
-}
-
-/* Link of the news item title */
-.news-item a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.news-item a:hover h3 {
-    color: #704c31; /* Darker brown on hover */
-}
-.news-item {
-    background-color: #f9f1e7;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 1rem;
-    max-width: 600px; /* Beperk de breedte van het nieuwsitem */
-    margin-left: auto; /* Zorgt ervoor dat het gecentreerd wordt */
-    margin-right: auto; /* Zorgt ervoor dat het gecentreerd wordt */
-    height: auto; /* Voeg een specifieke hoogte toe indien nodig */
-}
-/* Styling voor de FAQ-pagina */
+/* FAQ styling */
 .faq-container {
     padding: 2rem;
-    background-color: #f5f5dc; /* Beige achtergrond voor de FAQ-pagina */
-    color: #b56204; /* Donkerbruin voor de tekst */
+    background-color: #f5f5dc; /* Beige background for FAQ */
+    color: #b56204; /* Dark brown text */
 }
 
 .faq-category {
-    background-color: #fff; /* Witte achtergrond voor elke categorie */
+    background-color: #fff;
     padding: 1.5rem;
     margin-bottom: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid #d6a46f; /* Lichtbruin accent aan de linkerkant */
+    border-left: 5px solid #d6a46f; /* Light brown accent */
 }
 
 .faq-category h2 {
     font-size: 1.5rem;
-    color: #7f5539; /* Medium bruin voor de categorie titel */
+    color: #7f5539; /* Medium brown for category titles */
     margin-bottom: 1rem;
 }
 
 .faq-item {
     padding: 1rem;
-    border-bottom: 1px solid #ddd; /* Scheiding tussen vraag/antwoord */
+    border-bottom: 1px solid #ddd;
 }
 
 .faq-item:last-child {
-    border-bottom: none; /* Verwijder de scheiding bij de laatste vraag */
+    border-bottom: none;
 }
 
 .faq-item .question {
     font-weight: bold;
-    color: #5a3f35; /* Donkerbruin voor de vraag */
+    color: #5a3f35; /* Dark brown for question */
     margin-bottom: 0.5rem;
 }
 
 .faq-item .answer {
-    color: #7f5539; /* Medium bruin voor het antwoord */
+    color: #7f5539; /* Medium brown for the answer */
     margin-left: 1rem;
 }
 
-.faq-item a {
-    color: #5a3f35; /* Donkerbruin voor links */
-    text-decoration: none;
-}
-
-.faq-item a:hover {
-    text-decoration: underline;
-    color: #3e2a47; /* Donkerder bruin bij hover */
-}
-
-.faq-item button {
-    background-color: #a67948; /* Lichtbruin voor de button */
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.faq-item button:hover {
-    background-color: #a17346; /* Donkerder lichtbruin bij hover */
-}
-
-/* Container voor de nieuwsitems */
-.news-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-/* Styling voor individuele nieuwsitems */
-.news-item {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 1rem;
-}
-
-/* Afbeelding van nieuwsitems */
-.news-image {
-    max-width: 100%;
-    border-radius: 5px;
-}
-
-/* Titel van het nieuwsitem */
-.news-item h3 {
-    color: #7f5539; /* Bruine kleur voor titels */
-}
-
-/* Link van de nieuwsitem titel */
-.news-item a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.news-item a:hover h3 {
-    color: #5a3f35; /* Donkerbruin bij hover */
-}
-/* In your custom CSS */
-.login-btn {
-    background-color: #217026; /* Green */
-    color: white;
+/* Buttons for login/logout */
+.login-btn, .logout-btn {
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+}
+
+.login-btn {
+    background-color: #217026; /* Green */
+    color: white;
 }
 
 .login-btn:hover {
@@ -263,11 +198,37 @@ a:hover {
 .logout-btn {
     background-color: #951006; /* Red */
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
 }
 
 .logout-btn:hover {
     background-color: black;
 }
+/* Voor het tag-element */
+.news-item .tags {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.news-item .tag {
+    background-color: #f0f0f0;
+    padding: 0.2rem 0.4rem;
+    margin-right: 0.3rem;
+    border-radius: 5px;
+}
+
+.adminBtn {
+    background-color: #814c0a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    border: none;
+}
+
+.adminBtn:hover {
+    background-color: #a17346;
+    transform: scale(1.05);
+}
+
