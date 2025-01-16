@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <h1>Gebruiker bewerken</h1>
-    <form method="POST" action="{{ route('users.update', $user) }}">
+    <form method="POST" action="{{ route('admin.users.update', $user) }}">
         @csrf
         @method('PUT')
 
@@ -31,7 +31,7 @@
     </form>
 
     {{-- Verwijder de gebruiker --}}
-    <form action="{{ route('users.destroy', $user) }}" method="POST" style="display:inline;">
+    <form action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:inline;">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-danger" onclick="return confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?')">Verwijderen</button>

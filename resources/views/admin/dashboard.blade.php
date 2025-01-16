@@ -16,7 +16,7 @@
 
             <!-- Voeg een nieuwe FAQ toe -->
             <div class="bg-orange-500 text-white p-6 rounded-lg shadow-lg hover:bg-orange-400 transition duration-300">
-                <a href="{{ route('faq.create') }}" class="block text-xl font-bold mb-2">Voeg een nieuwe FAQ toe</a>
+                <a href="{{ route('admin.faq.create') }}" class="block text-xl font-bold mb-2">Voeg een nieuwe FAQ toe</a>
                 <p class="text-sm">Voeg nieuwe veelgestelde vragen toe aan je website.</p>
             </div>
 

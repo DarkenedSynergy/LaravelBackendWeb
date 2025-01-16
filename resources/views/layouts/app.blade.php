@@ -31,10 +31,14 @@
                     @endauth
                 </ul>
 
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="bg-white text-pink-600 px-4 py-2 rounded">Uitloggen</button>
-                </form>
+                @if (Auth::check())
+                    <form method="POST" action="{{ route('logout') }}" class="inline-block">
+                        @csrf
+                        <button type="submit" class="logout-btn">Uitloggen</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="login-btn">Inloggen</a>
+                @endif
             </nav>
 
         </header>
@@ -42,10 +46,10 @@
         @yield('content')
     </main>
     <footer>
-        <p>© 2025 Aidan De Greef. Alle rechten voorbehouden.</p>
+        <p>&copy 2025 Aidan De Greef. Alle rechten voorbehouden.</p>
     </footer>
 
-    <!-- Voeg het validatie-script hieronder toe, vlak voor het sluiten van de body-tag -->
+
     <script>
     $(document).ready(function() {
         // Zorg ervoor dat de validatie op alle formulieren wordt toegepast

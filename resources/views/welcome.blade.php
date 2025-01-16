@@ -6,7 +6,7 @@
     <div class="welcome-container">
 
         <main class="main-content">
-            <h1 class="title">Welkom bij de Paardensite!</h1>
+            <h1 class="title">Welkom op de site!</h1>
             <p class="intro">Ontdek nieuws, veelgestelde vragen en meer over paarden. Maak je profiel aan of bekijk de FAQ's.</p>
 
             <div class="cta-buttons">
@@ -15,9 +15,7 @@
             </div>
         </main>
 
-        <footer class="footer">
-            <p>© 2025 Paardensite. Alle rechten voorbehouden.</p>
-        </footer>
+
     </div>
 @endsection
 

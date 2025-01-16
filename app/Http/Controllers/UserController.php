@@ -66,7 +66,6 @@ class UserController extends Controller
     // Update an existing user (admin only)
     public function update(Request $request, User $user)
     {
-        // Validate user data
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
@@ -74,7 +73,6 @@ class UserController extends Controller
             'is_admin' => 'nullable|boolean',
         ]);
 
-        // Update the user data
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -82,14 +80,15 @@ class UserController extends Controller
             'is_admin' => $request->is_admin ?? $user->is_admin,
         ]);
 
-        return redirect()->route('admin.users.index')->with('success', 'User updated!');
+        return redirect()->route('admin.users.index')->with('success', 'Gebruiker bijgewerkt!');
     }
+
 
     // Delete a user (admin only)
     public function destroy(User $user)
     {
         $user->delete();
 
-        return redirect()->route('admin.users.index')->with('success', 'User deleted!');
+        return redirect()->route('admin.users.index')->with('success', 'Gebruiker verwijdert!');
     }
 }

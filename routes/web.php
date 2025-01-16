@@ -25,17 +25,6 @@ Route::get('/dashboard', function () {
 // FAQ Routes
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index'); // Public FAQ page
 
-// Admin-only FAQ Routes
-Route::middleware('admin')->group(function () {
-    Route::get('/admin/faq', [FaqController::class, 'index'])->name('admin.faq.index');
-    Route::get('/admin/faq/create', [FaqController::class, 'create'])->name('faq.create');
-    Route::post('/admin/faq', [FaqController::class, 'store'])->name('faq.store');
-    Route::get('/admin/faq/{faq}/edit', [FaqController::class, 'edit'])->name('faq.edit');
-    Route::put('/admin/faq/{faq}', [FaqController::class, 'update'])->name('faq.update');
-    Route::delete('/admin/faq/{faq}', [FaqController::class, 'destroy'])->name('faq.delete');
-});
-
-
 // Public Routes for Users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
@@ -56,24 +45,33 @@ Route::middleware('admin')->group(function () {
 
     // Category Management Routes
     Route::resource('categories', CategoryController::class);
-
-    // News management (create, edit, update, delete)
-    Route::post('/news', [NewsController::class, 'store'])->name('news.store');
-    Route::resource('news', NewsController::class)->except(['index', 'show']);
-    Route::delete('/news/{news}', [NewsController::class, 'delete'])->name('news.delete');
+     // admin faq management
+     Route::get('/admin/faq', [FaqController::class, 'adminIndex'])->name('admin.faq.index');
+         Route::get('/admin/faq/create', [FaqController::class, 'create'])->name('admin.faq.create');
+         Route::post('/admin/faq', [FaqController::class, 'store'])->name('admin.faq.store');
+         Route::get('/admin/faq/{faq}/edit', [FaqController::class, 'edit'])->name('admin.faq.edit');
+         Route::put('/admin/faq/{faq}', [FaqController::class, 'update'])->name('admin.faq.update');
+         Route::delete('/admin/faq/{faq}', [FaqController::class, 'destroy'])->name('admin.faq.delete');
+    // Admin News management (create, edit, update, delete)
+    Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news.index');
+    Route::get('/admin/news/create', [NewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/admin/news', [NewsController::class, 'store'])->name('admin.news.store');
+    Route::get('/admin/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('/admin/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/admin/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.delete');
 
     // Tag Management
     Route::resource('tags', TagController::class)->except(['show']);
 
     // Admin Routes for User Management
-    Route::middleware('admin')->group(function () {
-        Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
-        Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create'); // Admin-specific route for creating users
-        Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
-        Route::get('/admin/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
-        Route::put('/admin/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
-        Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
-    });
+    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::get('/admin/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('/admin/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+});
+
 
 });
 

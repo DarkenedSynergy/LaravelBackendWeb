@@ -6,7 +6,7 @@
     <div class="container">
         <h1>FAQ bewerken</h1>
 
-        <form method="POST" action="{{ route('faq.update', $faq) }}">
+        <form method="POST" action="{{ route('admin.faq.update', $faq) }}">
             @csrf
             @method('PUT')
 

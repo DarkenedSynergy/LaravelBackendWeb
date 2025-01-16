@@ -2,8 +2,8 @@
 
 /* Algemeen stijlen voor het admin dashboard */
 body {
-    background-color: #2f3b4e; /* Donkerblauwe achtergrond */
-    color: #e0e0e0; /* Lichte tekstkleur voor contrast */
+    background-color: #2f3b4e;
+    color: #e0e0e0;
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
@@ -11,9 +11,25 @@ body {
 
 /* Header stijlen */
 header {
-    background-color: #1c2733; /* Donkerblauw/grijs voor de header */
+    background-color: #1c2733;
     padding: 1rem;
     color: #ffffff;
+}
+
+button, a.btn {
+    font-family: Arial, sans-serif;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+button:hover{
+    color: white;
+    background-color: #16459f;
 }
 
 header nav ul {
@@ -30,7 +46,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-    color: #ffcc00; /* Hover kleur voor de links */
+    color: #ffcc00;
 }
 
 /* Admin Dashboard container */
@@ -43,12 +59,12 @@ header nav ul li a:hover {
 }
 
 .container h1 {
-    color: #ffcc00; /* Gouden kleur voor de titel */
+    color: #ffcc00;
 }
 
-/* Sidebar (indien aanwezig) */
+/* Sidebar */
 .sidebar {
-    background-color: #1f2833; /* Donkerder blauw voor de sidebar */
+    background-color: #1f2833;
     color: #e0e0e0;
     padding: 1rem;
     border-radius: 8px;
@@ -86,13 +102,13 @@ footer {
 }
 
 .nav-link:hover {
-    background-color: #3d4f67; /* Lichte grijs-blauw bij hover */
-    color: #ffcc00; /* Gouden tekstkleur bij hover */
+    background-color: #3d4f67;
+    color: #ffcc00;
 }
 
 /* Styling voor knoppen en admin links */
 .admin-link {
-    background-color: #ff7f50; /* Oranjerode achtergrond voor admin link */
+    background-color: #ff7f50;
     color: white;
     padding: 12px 25px;
     font-weight: bold;
@@ -101,12 +117,12 @@ footer {
 }
 
 .admin-link:hover {
-    background-color: #e56b3d; /* Donkerder oranje bij hover */
+    background-color: #e56b3d;
 }
 
 /* Styling voor uitlogknop */
 .btn-logout {
-    background-color: #ff6666; /* Roodachtige achtergrond voor uitloggen */
+    background-color: #ff6666;
     color: white;
     padding: 12px 25px;
     border-radius: 5px;
@@ -117,5 +133,82 @@ footer {
 }
 
 .btn-logout:hover {
-    background-color: #e55a4e; /* Donkerder rood bij hover */
+    background-color: #e55a4e;
+}
+
+.pagination-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+.pagination .page-link {
+    font-size: 0.875px;
+    padding: 0.25px 0.5px;
+}
+
+.pagination .page-item {
+    margin: 0 0.25px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+/* Knop voor "Nieuwe gebruiker toevoegen" */
+.btn-add-new {
+    background-color: #4CAF50; /* Groen */
+    color: white;
+    border: none;
+}
+
+.btn-add-new:hover {
+    background-color: #45a049;
+}
+
+/* Knop voor "Bewerken" */
+.btn-edit {
+    background-color: #008CBA; /* Blauwe kleur */
+    color: white;
+    border: none;
+}
+
+.btn-edit:hover {
+    background-color: #007bb5;
+}
+
+/* Knop voor "Verwijderen" */
+.btn-delete {
+    background-color: #f44336; /* Rood */
+    color: white;
+    border: none;
+}
+
+.btn-delete:hover {
+    background-color: #e41c1c;
+}
+/* Verwijder de focus en actieve status voor links */
+a.btn-add-user:focus, a.btn-edit-user:focus,
+a.btn-add-user:active, a.btn-edit-user:active {
+    outline: none; /* Verwijder de standaard focus outline */
+    background-color: inherit; /* Zorg ervoor dat de achtergrondkleur niet verandert bij focus of actieve status */
+    box-shadow: none; /* Verwijder eventuele box-shadow die door browsers wordt toegevoegd */
 }

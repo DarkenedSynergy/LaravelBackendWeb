@@ -10,7 +10,7 @@
         <div>{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('tags.create') }}" class="btn btn-primary">Nieuwe tag toevoegen</a>
+    <button href="{{ route('tags.create') }}" class="btn btn-primary">Nieuwe tag toevoegen</button>
 
     <table class="table">
         <thead>
@@ -24,7 +24,7 @@
                 <tr>
                     <td>{{ $tag->name }}</td>
                     <td>
-                        <a href="{{ route('tags.edit', $tag) }}" class="btn btn-warning">Bewerken</a>
+                        <button href="{{ route('tags.edit', $tag) }}" class="btn btn-warning">Bewerken</button>
                         <form action="{{ route('tags.destroy', $tag) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -39,7 +39,9 @@
             @endforelse
         </tbody>
     </table>
+<div class="pagination-container">
+        {{ $tags->links() }}
+    </div>
 
-    {{ $tags->links() }}
 </div>
 @endsection
