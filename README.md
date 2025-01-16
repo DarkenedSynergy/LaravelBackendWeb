@@ -1,66 +1,114 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Paardensite Backend Web
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overzicht van het Project
 
-## About Laravel
+Dit project is de backend voor een website die gericht is op paarden. De applicatie behandelt verschillende soorten inhoud, zoals nieuws, gebruikersprofielen, veelgestelde vragen (FAQ) en meer. Het is gebouwd met Laravel, een krachtig PHP-framework, en bevat functionaliteiten zoals gebruikersauthenticatie, een admin-dashboard en e-mailfunctionaliteit voor het contact opnemen met admins.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Functies
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Admin Dashboard**: Beheer van gebruikers, nieuws, tags en FAQ's.
+- **Gebruikersbeheer**: Admins kunnen gebruikers bekijken, aanmaken, bewerken en verwijderen.
+- **Nieuwsbeheer**: Admins kunnen nieuwsitems aanmaken, bewerken en verwijderen, terwijl gebruikers deze kunnen bekijken.
+- **FAQ Sectie**: Admins kunnen FAQ's en categorieën beheren, gebruikers kunnen FAQ's bekijken.
+- **Contactformulier**: Bezoekers kunnen een contactformulier invullen, en admins ontvangen een e-mail.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Vereisten
 
-## Learning Laravel
+Voordat je begint, zorg ervoor dat je het volgende hebt:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP 8.x of hoger
+- Composer
+- MySQL (of een andere ondersteunde database)
+- Laravel 8.x of hoger
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installatie
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Volg deze stappen om je ontwikkelomgeving in te stellen:
 
-## Laravel Sponsors
+1. Clone de repository:
+   ```bash
+   git clone https://github.com/your-username/paardensite-backend-web.git
+   cd paardensite-backend-web
+   ```
+2. Installeer de afhankelijkheden via Composer:
+   ```bash
+   composer install
+   ```
+3. Kopieer het `.env.example` bestand naar `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+4. Genereer de applicatiesleutel:
+   ```bash
+   php artisan key:generate
+   ```
+5. Stel je database in en werk het `.env` bestand bij met je databasegegevens:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=je_database_naam
+   DB_USERNAME=je_database_gebruiker
+   DB_PASSWORD=je_database_wachtwoord
+   ```
+6. Voer de database migraties uit:
+   ```bash
+   php artisan migrate
+   ```
+7. (Optioneel) Zaai de database met voorbeeldgegevens:
+   ```bash
+   php artisan db:seed
+   ```
+8. Start de lokale ontwikkelserver:
+   ```bash
+   php artisan serve
+   ```
+   De applicatie zou nu moeten draaien op `http://127.0.0.1:8000`.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Testen
 
-### Premium Partners
+Om te controleren of alles correct werkt, voer de Laravel tests uit:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+php artisan test
+```
 
-## Contributing
+## Functies in Detail
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Admin Dashboard
 
-## Code of Conduct
+- Admin gebruikers kunnen nieuws, FAQ's, tags en gebruikersaccounts bekijken en beheren.
+- Admins kunnen records verwijderen of bijwerken, categorieën voor FAQ's beheren en tags aan nieuwsitems koppelen.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Nieuwsbeheer
 
-## Security Vulnerabilities
+- Admins kunnen nieuwsitems aanmaken en bewerken.
+- Gebruikers kunnen de lijst van nieuwsitems bekijken en de volledige inhoud lezen.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Gebruikersbeheer
 
-## License
+- Admins kunnen nieuwe gebruikers toevoegen, profielen bijwerken of gebruikers verwijderen.
+- Gebruikers kunnen hun eigen profiel bekijken en bewerken.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### FAQ Beheer
+
+- Admins kunnen nieuwe FAQ's aanmaken, bestaande FAQ's bewerken en verwijderen.
+- Gebruikers kunnen FAQ's bekijken en antwoorden op veelgestelde vragen lezen.
+
+### Contactformulier
+
+- Bezoekers kunnen een contactformulier invullen, waarbij een e-mail naar de admins wordt gestuurd.
+- Het formulier bevat velden voor naam, e-mail en bericht.
+
+## Licentie
+
+Dit project is open-source en beschikbaar onder de MIT Licentie.
+
+## Erkenningen
+
+- Laravel framework
+- Composer
+- MySQL voor databasebeheer
+- Mailtrap voor het testen van e-mailfunctionaliteit
+
+Als je vragen hebt of problemen tegenkomt, aarzel dan niet om me te contacteren!
