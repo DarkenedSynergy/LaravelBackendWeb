@@ -112,10 +112,10 @@ Dit project is open-source en beschikbaar onder de MIT Licentie.
   
 ## Bronnenlijst
 
-https://chatgpt.com/
-https://stackoverflow.com/
-https://laravel.com/docs
-https://mailtrap.io/
-https://laracasts.com/
+- https://chatgpt.com/
+- https://stackoverflow.com/
+- https://laravel.com/docs
+- https://mailtrap.io/
+- https://laracasts.com/
 
 Als je vragen hebt of problemen tegenkomt, aarzel dan niet om me te contacteren!
