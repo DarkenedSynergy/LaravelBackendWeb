@@ -103,11 +103,19 @@ php artisan test
 
 Dit project is open-source en beschikbaar onder de MIT Licentie.
 
-## Erkenningen
+## Herkenningen
 
 - Laravel framework
 - Composer
 - MySQL voor databasebeheer
 - Mailtrap voor het testen van e-mailfunctionaliteit
+  
+## Bronnenlijst
+
+https://chatgpt.com/
+https://stackoverflow.com/
+https://laravel.com/docs
+https://mailtrap.io/
+https://laracasts.com/
 
 Als je vragen hebt of problemen tegenkomt, aarzel dan niet om me te contacteren!
